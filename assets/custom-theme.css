@@ -1,0 +1,791 @@
+/* ==========================================================================
+   Minimaliste Custom Theme CSS
+   Loaded after Horizon's base.css — overrides to create an editorial,
+   minimalist visual identity with extreme whitespace, refined typography,
+   and restrained interaction design.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. CUSTOM PROPERTIES
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Palette */
+  --minimaliste-bg: #fafaf8;
+  --minimaliste-bg-alt: #f5f4f0;
+  --minimaliste-text: #1a1a1a;
+  --minimaliste-text-secondary: #6b6560;
+  --minimaliste-accent: #8c7b6b;
+  --minimaliste-accent-light: #a89888;
+  --minimaliste-border: #e0ddd8;
+  --minimaliste-border-light: #eae8e4;
+
+  /* Typography */
+  --minimaliste-font-heading: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --minimaliste-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+
+  /* Spacing (generous — 2x default) */
+  --minimaliste-space-xs: 0.75rem;
+  --minimaliste-space-sm: 1.5rem;
+  --minimaliste-space-md: 3rem;
+  --minimaliste-space-lg: 5rem;
+  --minimaliste-space-xl: 8rem;
+
+  /* Transitions */
+  --minimaliste-transition-speed: 0.6s;
+  --minimaliste-transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Borders */
+  --minimaliste-border-width: 0.5px;
+}
+
+
+/* ---------------------------------------------------------------------------
+   2. GLOBAL FOUNDATIONS
+   --------------------------------------------------------------------------- */
+
+body {
+  background-color: var(--minimaliste-bg);
+  color: var(--minimaliste-text);
+  font-family: var(--minimaliste-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scrollbar-color: var(--minimaliste-border) var(--minimaliste-bg);
+}
+
+/* Override Horizon's default link color with taupe accent */
+a {
+  --button-color: var(--minimaliste-accent);
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease),
+    color var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+:is(h1, h2, h3, h4, h5, h6, p) > a:hover {
+  --button-color: var(--minimaliste-text);
+}
+
+::selection {
+  background-color: var(--minimaliste-accent-light);
+  color: var(--minimaliste-bg);
+}
+
+
+/* ---------------------------------------------------------------------------
+   3. TYPOGRAPHY — Headings
+   --------------------------------------------------------------------------- */
+
+h1, .h1.h1,
+h2, .h2.h2,
+h3, .h3.h3,
+h4, .h4.h4,
+h5, .h5.h5,
+h6, .h6.h6 {
+  font-family: var(--minimaliste-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--minimaliste-text);
+  line-height: 1.15;
+}
+
+/* Large hero headings — even thinner, more dramatic */
+h1, .h1.h1 {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+h2, .h2.h2 {
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+/* Body typography */
+body,
+.paragraph:not(.button),
+.paragraph > * {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+  color: var(--minimaliste-text);
+}
+
+/* Secondary / subdued text */
+.unit-price,
+.tax-note.tax-note.tax-note,
+.compare-at-price {
+  color: var(--minimaliste-text-secondary);
+}
+
+.compare-at-price {
+  opacity: 0.5;
+}
+
+
+/* ---------------------------------------------------------------------------
+   4. SECTION LAYOUT — Extreme whitespace
+   --------------------------------------------------------------------------- */
+
+.section {
+  padding-block: var(--minimaliste-space-lg);
+}
+
+/* Extra generous spacing between sections */
+.shopify-section + .shopify-section {
+  margin-top: var(--minimaliste-space-sm);
+}
+
+/* Section backgrounds — off-white or subtle alt */
+.section-background {
+  background-color: var(--minimaliste-bg) !important;
+}
+
+/* Section titles — thin, editorial, spaced */
+.section-resource-list .group-block .h2,
+.section-resource-list .group-block .h3,
+.section-carousel .group-block .h2,
+.section-carousel .group-block .h3 {
+  font-family: var(--minimaliste-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+/* Title with line decoration */
+.title--aligned-center {
+  gap: var(--minimaliste-space-sm);
+}
+
+.title--aligned-center::before,
+.title--aligned-center::after {
+  content: '';
+  flex: 1;
+  height: var(--minimaliste-border-width);
+  background-color: var(--minimaliste-border);
+}
+
+
+/* ---------------------------------------------------------------------------
+   5. HEADER — Thinner, more open
+   --------------------------------------------------------------------------- */
+
+#header-component .header__row {
+  padding-block: var(--minimaliste-space-sm);
+}
+
+#header-component .header__row--top {
+  border-bottom: var(--minimaliste-border-width) solid var(--minimaliste-border);
+}
+
+/* Navigation links — wider spacing, lighter weight */
+#header-component .menu-list__link {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--minimaliste-text-secondary);
+  transition: color var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+  padding-inline: var(--minimaliste-space-xs);
+}
+
+#header-component .menu-list__link:hover {
+  color: var(--minimaliste-text);
+}
+
+/* Header logo area — generous spacing */
+#header-component .header__columns {
+  gap: var(--minimaliste-space-md);
+}
+
+/* Navigation bar row — subtle top divider */
+#header-component .header__navigation-bar-row {
+  border-top: var(--minimaliste-border-width) solid var(--minimaliste-border-light);
+  padding-block: var(--minimaliste-space-xs);
+}
+
+/* Header action icons — refined */
+#header-component .svg-wrapper {
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+#header-component .svg-wrapper:hover {
+  opacity: 0.5;
+}
+
+
+/* ---------------------------------------------------------------------------
+   6. BUTTONS — Outline style, transparent background
+   --------------------------------------------------------------------------- */
+
+.button,
+.button-secondary,
+button.shopify-payment-button__button--unbranded {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease),
+    background-color var(--minimaliste-transition-speed) var(--minimaliste-transition-ease),
+    color var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+  border-radius: 0;
+}
+
+/* Primary button — outline style */
+.button:not(.button-secondary, .button-unstyled) {
+  --button-background-color: transparent;
+  --button-color: var(--minimaliste-text);
+  --button-border-color: var(--minimaliste-text);
+  --button-border-width: var(--minimaliste-border-width);
+  box-shadow: inset 0 0 0 1px var(--minimaliste-text);
+  padding-block: 1rem;
+  padding-inline: 2.5rem;
+}
+
+.button:not(.button-secondary, .button-unstyled):hover {
+  --button-background-color: var(--minimaliste-text);
+  --button-color: var(--minimaliste-bg);
+  --button-border-color: var(--minimaliste-text);
+  opacity: 0.9;
+}
+
+/* Secondary button — ghost / link-like */
+.button-secondary {
+  --button-background-color: transparent;
+  --button-color: var(--minimaliste-accent);
+  --button-border-color: var(--minimaliste-accent);
+  --button-border-width: var(--minimaliste-border-width);
+  box-shadow: inset 0 0 0 1px var(--minimaliste-accent);
+  padding-block: 0.875rem;
+  padding-inline: 2rem;
+}
+
+.button-secondary:hover {
+  --button-background-color: var(--minimaliste-accent);
+  --button-color: var(--minimaliste-bg);
+  --button-border-color: var(--minimaliste-accent);
+  opacity: 0.9;
+}
+
+/* Unstyled buttons — just fade on hover */
+.button-unstyled:hover {
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+
+/* ---------------------------------------------------------------------------
+   7. PRODUCT CARDS — No shadow, no border, pure editorial
+   --------------------------------------------------------------------------- */
+
+/* Remove all card hover effects from Horizon */
+.product-card,
+.collection-card,
+.resource-card {
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+  box-shadow: none !important;
+}
+
+@media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card-hover-effect-lift .product-card:hover,
+  .card-hover-effect-lift .collection-card:hover,
+  .card-hover-effect-lift .resource-card:hover,
+  .card-hover-effect-scale .product-card:hover,
+  .card-hover-effect-scale .collection-card:hover,
+  .card-hover-effect-scale .resource-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Minimalist hover: subtle opacity fade */
+  .product-card:hover,
+  .collection-card:hover,
+  .resource-card:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Product grid items — no border, no card frame */
+.product-grid__item {
+  border: none;
+  border-radius: 0;
+}
+
+.product-grid__card.product-grid__card {
+  gap: var(--minimaliste-space-xs);
+}
+
+/* Card images — clean, no overflow rounding */
+.card-gallery,
+.product-card__image,
+.collection-card__image {
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* Subtle image hover — slight scale, very slow */
+@media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card-gallery img,
+  .product-card__image img,
+  .collection-card__image img {
+    transition: transform var(--minimaliste-transition-speed) var(--minimaliste-transition-ease),
+      opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+  }
+
+  .product-card:hover .card-gallery img,
+  .product-card:hover .product-card__image img,
+  .collection-card:hover .collection-card__image img {
+    transform: scale(1.02);
+  }
+}
+
+/* Product card text — minimal, clean */
+.product-grid__card .group-block {
+  gap: 0.25rem;
+}
+
+.product-grid :is(h3, p) {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Price styling — understated */
+.price {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  color: var(--minimaliste-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+
+/* ---------------------------------------------------------------------------
+   8. PRODUCT DETAILS PAGE
+   --------------------------------------------------------------------------- */
+
+/* Product form buttons — generous spacing */
+.product-form-buttons {
+  gap: var(--minimaliste-space-xs);
+}
+
+/* Quantity selector — thin borders, refined */
+.quantity-selector {
+  border-radius: 0;
+}
+
+.quantity-selector :is(.quantity-minus, .quantity-plus) {
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+.quantity-selector :is(.quantity-minus, .quantity-plus):hover {
+  opacity: 0.5;
+}
+
+/* Sticky add to cart — subtle border only */
+.sticky-add-to-cart {
+  border-top: var(--minimaliste-border-width) solid var(--minimaliste-border);
+  box-shadow: none;
+  background-color: var(--minimaliste-bg);
+}
+
+
+/* ---------------------------------------------------------------------------
+   9. COLLECTION & PRODUCT GRID
+   --------------------------------------------------------------------------- */
+
+.product-grid {
+  gap: var(--minimaliste-space-sm);
+}
+
+[product-grid-view='default'] {
+  --product-grid-gap: var(--minimaliste-space-sm);
+  --padding-block-start: var(--minimaliste-space-md);
+  --padding-block-end: var(--minimaliste-space-md);
+}
+
+.section-resource-list__content {
+  gap: var(--minimaliste-space-sm);
+}
+
+
+/* ---------------------------------------------------------------------------
+   10. HERO / SLIDESHOW
+   --------------------------------------------------------------------------- */
+
+/* Hero section — more breathing room */
+.section--height-large {
+  min-height: 85vh;
+}
+
+.section--height-full-screen {
+  min-height: 100vh;
+}
+
+/* Hero overlay text — editorial feel */
+.section--height-large .h1,
+.section--height-full-screen .h1 {
+  font-family: var(--minimaliste-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+
+/* ---------------------------------------------------------------------------
+   11. FOOTER — Clean, minimal divider
+   --------------------------------------------------------------------------- */
+
+footer .section {
+  padding-block: var(--minimaliste-space-lg) var(--minimaliste-space-md);
+}
+
+footer .section-background {
+  background-color: var(--minimaliste-bg-alt) !important;
+}
+
+footer a {
+  color: var(--minimaliste-text-secondary);
+  transition: color var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+footer a:hover {
+  color: var(--minimaliste-text);
+}
+
+
+/* ---------------------------------------------------------------------------
+   12. FORMS & INPUTS
+   --------------------------------------------------------------------------- */
+
+textarea,
+input:not([type='checkbox'], [type='radio']),
+select {
+  border: var(--minimaliste-border-width) solid var(--minimaliste-border);
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0.875rem 1rem;
+  font-family: var(--minimaliste-font-body);
+  transition: border-color var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+textarea:hover,
+input:not([type='checkbox'], [type='radio']):hover {
+  background-color: transparent;
+  border-color: var(--minimaliste-accent);
+}
+
+textarea:focus,
+input:not([type='checkbox'], [type='radio']):focus {
+  border-color: var(--minimaliste-text);
+  outline: none;
+}
+
+
+/* ---------------------------------------------------------------------------
+   13. DRAWER & DIALOG
+   --------------------------------------------------------------------------- */
+
+.drawer {
+  background-color: var(--minimaliste-bg);
+}
+
+dialog {
+  background-color: var(--minimaliste-bg);
+  border-radius: 0;
+}
+
+/* Cart drawer — clean aesthetic */
+.drawer .button,
+dialog .button {
+  border-radius: 0;
+}
+
+
+/* ---------------------------------------------------------------------------
+   14. ANIMATIONS — Subtle fade-in-up
+   --------------------------------------------------------------------------- */
+
+@keyframes minimaliste-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes minimaliste-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apply entrance animation to main content sections */
+@media (prefers-reduced-motion: no-preference) {
+  .content-for-layout > .shopify-section {
+    animation: minimaliste-fade-in-up 0.8s var(--minimaliste-transition-ease) both;
+  }
+
+  .content-for-layout > .shopify-section:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .content-for-layout > .shopify-section:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .content-for-layout > .shopify-section:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .content-for-layout > .shopify-section:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+
+  .content-for-layout > .shopify-section:nth-child(n+5) {
+    animation-delay: 0.6s;
+  }
+
+  /* Product cards stagger in */
+  .product-grid__item {
+    animation: minimaliste-fade-in-up 0.6s var(--minimaliste-transition-ease) both;
+  }
+
+  .product-grid__item:nth-child(1) { animation-delay: 0.1s; }
+  .product-grid__item:nth-child(2) { animation-delay: 0.2s; }
+  .product-grid__item:nth-child(3) { animation-delay: 0.3s; }
+  .product-grid__item:nth-child(4) { animation-delay: 0.4s; }
+  .product-grid__item:nth-child(n+5) { animation-delay: 0.5s; }
+}
+
+
+/* ---------------------------------------------------------------------------
+   15. SCROLLBAR
+   --------------------------------------------------------------------------- */
+
+/* Webkit scrollbar — nearly invisible, editorial feel */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--minimaliste-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--minimaliste-border);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--minimaliste-accent);
+}
+
+
+/* ---------------------------------------------------------------------------
+   16. ANNOUNCEMENT BAR — Restrained
+   --------------------------------------------------------------------------- */
+
+.header-announcements .section {
+  padding-block: 0.625rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--minimaliste-font-body);
+}
+
+
+/* ---------------------------------------------------------------------------
+   17. BLOG & ARTICLE CARDS
+   --------------------------------------------------------------------------- */
+
+.featured-blog-posts-card {
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+.featured-blog-posts-card:hover {
+  opacity: 0.85;
+}
+
+.featured-blog-posts-card__content {
+  padding: var(--minimaliste-space-sm) 0;
+}
+
+
+/* ---------------------------------------------------------------------------
+   18. MEDIA WITH CONTENT — Editorial spacing
+   --------------------------------------------------------------------------- */
+
+.section-content-wrapper.section-content-wrapper {
+  gap: var(--minimaliste-space-md);
+}
+
+.section-content-wrapper .group-block {
+  gap: var(--minimaliste-space-sm);
+}
+
+
+/* ---------------------------------------------------------------------------
+   19. DIVIDERS & SEPARATORS
+   --------------------------------------------------------------------------- */
+
+hr,
+.divider {
+  border: none;
+  border-top: var(--minimaliste-border-width) solid var(--minimaliste-border-light);
+  margin-block: var(--minimaliste-space-md);
+}
+
+
+/* ---------------------------------------------------------------------------
+   20. MOBILE RESPONSIVE ADJUSTMENTS
+   --------------------------------------------------------------------------- */
+
+@media screen and (max-width: 749px) {
+  :root {
+    --minimaliste-space-lg: 3.5rem;
+    --minimaliste-space-xl: 5rem;
+    --minimaliste-space-md: 2rem;
+  }
+
+  .section {
+    padding-block: var(--minimaliste-space-md);
+  }
+
+  #header-component .header__row {
+    padding-block: var(--minimaliste-space-xs);
+  }
+
+  /* Tighter product grid on mobile but still airy */
+  .product-grid {
+    gap: var(--minimaliste-space-xs);
+  }
+
+  /* Buttons — full width on mobile for better touch targets */
+  .button:not(.button-secondary, .button-unstyled),
+  .button-secondary {
+    width: 100%;
+    text-align: center;
+    padding-block: 0.875rem;
+    padding-inline: 1.5rem;
+  }
+
+  /* Reduce heading sizes proportionally */
+  h1, .h1.h1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    letter-spacing: 0.02em;
+  }
+
+  h2, .h2.h2 {
+    font-size: clamp(1.375rem, 4.5vw, 2rem);
+  }
+
+  /* Footer — tighter on mobile */
+  footer .section {
+    padding-block: var(--minimaliste-space-md) var(--minimaliste-space-sm);
+  }
+
+  /* Hero sections — still impactful but fits viewport */
+  .section--height-large {
+    min-height: 70vh;
+  }
+}
+
+/* Tablet breakpoint */
+@media screen and (min-width: 750px) and (max-width: 1199px) {
+  :root {
+    --minimaliste-space-lg: 4rem;
+    --minimaliste-space-xl: 6rem;
+  }
+
+  .section {
+    padding-block: var(--minimaliste-space-lg);
+  }
+
+  .product-grid {
+    gap: var(--minimaliste-space-sm);
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+   21. FOCUS STATES — Subtle, on-brand
+   --------------------------------------------------------------------------- */
+
+*:focus-visible {
+  outline: 1px solid var(--minimaliste-accent);
+  outline-offset: 3px;
+}
+
+.focus-inset:focus-visible {
+  outline-offset: -1px;
+}
+
+
+/* ---------------------------------------------------------------------------
+   22. BADGES & LABELS — Refined
+   --------------------------------------------------------------------------- */
+
+.badge {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: 0.25rem 0.625rem;
+}
+
+
+/* ---------------------------------------------------------------------------
+   23. PAGINATION — Clean
+   --------------------------------------------------------------------------- */
+
+.pagination a,
+.pagination span {
+  font-family: var(--minimaliste-font-body);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+.pagination a:hover {
+  opacity: 0.5;
+}
+
+
+/* ---------------------------------------------------------------------------
+   24. MARQUEE — Elegant
+   --------------------------------------------------------------------------- */
+
+.marquee {
+  font-family: var(--minimaliste-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+
+/* ---------------------------------------------------------------------------
+   25. QUICK ADD — Minimal overlay
+   --------------------------------------------------------------------------- */
+
+.quick-add__button {
+  border-radius: 0;
+  font-family: var(--minimaliste-font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity var(--minimaliste-transition-speed) var(--minimaliste-transition-ease);
+}
+
+.quick-add__button:hover {
+  opacity: 0.7;
+}
